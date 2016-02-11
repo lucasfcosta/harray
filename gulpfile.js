@@ -28,7 +28,9 @@ gulp.task('eslint', () => {
 
 gulp.task('babel', () => {
     return gulp.src('src/**/*.js')
-        .pipe(babel())
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(gulp.dest('lib'));
 });
 
@@ -44,7 +46,6 @@ gulp.task('test', ['pre-test'], (cb) => {
     let mochaErr;
 
     gulp.src('test/**/*.js')
-        .pipe(babel())
         .pipe(plumber())
         .pipe(mocha({reporter: 'spec'}))
         .on('error', (err) => {
