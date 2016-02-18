@@ -19,7 +19,10 @@ describe('Harray Creation', () => {
     });
 
     it('Creates a Harray object given a starting step and a formula', () => {
-        let h = new Harray(1, (element) => { return element * 2 + 10 });
+        let h = new Harray(1, (element) => {
+            return element * 2 + 10;
+        });
+
         assert.strictEqual(h.get(1), 12);
         assert.strictEqual(h.get(2), 34);
     });
