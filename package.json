@@ -37,6 +37,7 @@
     "gulp-mocha": "^2.2.0",
     "gulp-nsp": "^2.3.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-sequence": "^0.4.4"
+    "gulp-sequence": "^0.4.4",
+    "sinon": "^1.17.3"
   }
 }

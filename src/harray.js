@@ -34,6 +34,7 @@ Harray.prototype.get = function get(index) {
 
         for (let i = lastKey; i < index; i++) {
             result = this.formula(result);
+            this[i + 1] = result;
         }
 
         return this[index] = result;
