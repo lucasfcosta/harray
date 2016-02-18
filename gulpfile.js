@@ -48,9 +48,6 @@ gulp.task('test', ['pre-test'], (cb) => {
     gulp.src('test/**/*.js')
         .pipe(plumber())
         .pipe(mocha({reporter: 'spec'}))
-        .on('error', (err) => {
-            mochaErr = err;
-        })
         .pipe(istanbul.writeReports())
         .pipe(istanbul.enforceThresholds({thresholds: {global: 100}}))
         .on('end', () => {
