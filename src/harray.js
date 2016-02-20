@@ -1,6 +1,7 @@
 'use strict';
 
 import { zip } from './utils/zip';
+import { some } from './utils/some';
 
 function Harray() {
     let args = arguments;
@@ -48,5 +49,7 @@ Harray.addMethod = function addMethod(methodName, method) {
 };
 
 Harray.addMethod('zip', zip);
+
+Harray.addMethod('some', some);
 
 module.exports = Harray;
