@@ -82,4 +82,18 @@ describe('Harray Object', () => {
             assert.isTrue(formulaSpy.calledTwice);
         });
     });
+
+    describe('Harray Extensions', () => {
+        it('Adds a method with a name and a function to the Harray prototype', () => {
+            let batmanGet = sandbox.spy(function batmanGet(index) {
+                return `Batman: ${this.get(index)}`;
+            });
+
+            Harray.addMethod('batmanGet', batmanGet);
+            assert.isTrue('batmanGet' in Harray.prototype);
+
+            let batHarray = new Harray(10, 60);
+            assert.strictEqual(batHarray.batmanGet(3), 'Batman: 160');
+        });
+    });
 });

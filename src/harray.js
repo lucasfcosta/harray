@@ -41,4 +41,8 @@ Harray.prototype.get = function get(index) {
     }
 };
 
+Harray.addMethod = function addMethod(methodName, method) {
+    Harray.prototype[methodName] = method;
+};
+
 module.exports = Harray;
