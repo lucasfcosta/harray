@@ -14,6 +14,7 @@ describe('Every Method', () => {
                 return false;
             } else {
                 actual.push(el);
+                return true;
             }
         });
 
