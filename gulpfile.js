@@ -13,6 +13,7 @@ const babel = require('gulp-babel');
 const bump = require('gulp-bump');
 const sequence = require('gulp-sequence');
 const git = require('gulp-git');
+const clean = require('gulp-clean');
 
 gulp.task('nsp', (cb) => {
     return nsp({package: `${__dirname}/package.json`}, cb);
@@ -26,7 +27,12 @@ gulp.task('eslint', () => {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('babel', () => {
+gulp.task('clean', () => {
+    return gulp.src('lib', {read: false})
+        .pipe(clean());
+});
+
+gulp.task('babel', ['clean'], () => {
     return gulp.src('src/**/*.js')
         .pipe(babel({
             presets: ['es2015']
