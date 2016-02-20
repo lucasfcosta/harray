@@ -2,6 +2,7 @@
 
 import { zip } from './utils/zip';
 import { some } from './utils/some';
+import { every } from './utils/every';
 
 function Harray() {
     let args = arguments;
@@ -51,5 +52,7 @@ Harray.addMethod = function addMethod(methodName, method) {
 Harray.addMethod('zip', zip);
 
 Harray.addMethod('some', some);
+
+Harray.addMethod('every', every);
 
 module.exports = Harray;
