@@ -3,6 +3,7 @@
 import { zip } from './utils/zip';
 import { some } from './utils/some';
 import { every } from './utils/every';
+import { getReadableStream } from './utils/getReadableStream';
 
 function Harray() {
     let args = arguments;
@@ -54,5 +55,7 @@ Harray.addMethod('zip', zip);
 Harray.addMethod('some', some);
 
 Harray.addMethod('every', every);
+
+Harray.addMethod('getReadableStream', getReadableStream);
 
 module.exports = Harray;
