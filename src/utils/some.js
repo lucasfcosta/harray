@@ -5,7 +5,7 @@ export function some(fn, index) {
         throw new TypeError();
     }
 
-    while (fn(this.get(index)) !== true) {
+    while (!fn(this.get(index))) {
         index++;
         this.some(fn, index);
     }

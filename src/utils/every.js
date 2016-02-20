@@ -5,7 +5,7 @@ export function every(fn, index) {
         throw new TypeError();
     }
 
-    while (fn(this.get(index)) !== false) {
+    while (fn(this.get(index))) {
         index++;
         this.every(fn, index);
     }
