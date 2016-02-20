@@ -5,6 +5,9 @@
         "es6": true,
         "node": true
     },
+    "ecmaFeatures": {
+        "modules": true
+    },
     "rules": {
         "no-extra-parens": 1,
         "eqeqeq": 2,
