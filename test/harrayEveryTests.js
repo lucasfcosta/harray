@@ -18,7 +18,7 @@ describe('Every Method', () => {
             }
         });
 
-        assert.sameMembers(expected, actual);
+        assert.strictEqual(JSON.stringify(actual), JSON.stringify(expected));
     });
 
     it('Throws a TypeError if the argument is not an array', () => {

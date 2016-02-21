@@ -18,7 +18,7 @@ describe('GetReadableStream Method', () => {
 
             if (received >= 10) {
                 h.pause();
-                assert.sameMembers(expectedTen, firstTen);
+                assert.strictEqual(JSON.stringify(firstTen), JSON.stringify(expectedTen));
             }
         });
     });
@@ -36,7 +36,7 @@ describe('GetReadableStream Method', () => {
 
             if (received >= 10) {
                 h.pause();
-                assert.sameMembers(expectedTen, firstTen);
+                assert.strictEqual(JSON.stringify(firstTen), JSON.stringify(expectedTen));
             }
         });
     });
