@@ -83,6 +83,16 @@ describe('Harray Object', () => {
         });
     });
 
+    describe('Length Property', () => {
+        it('Always returns infinity', () => {
+            let h = new Harray(1, 2);
+            assert.strictEqual(h.length, Infinity);
+
+            h = new Harray(10);
+            assert.strictEqual(h.length, Infinity);
+        });
+    });
+
     describe('Harray Extensions', () => {
         it('Adds a method with a name and a function to the Harray prototype', () => {
             let batmanGet = sandbox.spy(function batmanGet(index) {

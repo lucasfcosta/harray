@@ -46,6 +46,8 @@ Harray.prototype.get = function get(index) {
     }
 };
 
+Harray.prototype.length = Infinity;
+
 Harray.addMethod = function addMethod(methodName, method) {
     Harray.prototype[methodName] = method;
 };
