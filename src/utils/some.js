@@ -7,6 +7,5 @@ export function some(fn, index) {
 
     while (!fn(this.get(index))) {
         index++;
-        some.call(this, fn, index);
     }
 }

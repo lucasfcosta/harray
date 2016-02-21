@@ -7,6 +7,5 @@ export function every(fn, index) {
 
     while (fn(this.get(index))) {
         index++;
-        every.call(this, fn, index);
     }
 }
