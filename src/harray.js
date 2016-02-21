@@ -1,5 +1,6 @@
 'use strict';
 
+import { getRange } from './utils/getRange';
 import { zip } from './utils/zip';
 import { some } from './utils/some';
 import { every } from './utils/every';
@@ -51,6 +52,8 @@ Harray.prototype.length = Infinity;
 Harray.addMethod = function addMethod(methodName, method) {
     Harray.prototype[methodName] = method;
 };
+
+Harray.addMethod('getRange', getRange);
 
 Harray.addMethod('zip', zip);
 
