@@ -14,9 +14,20 @@ const bump = require('gulp-bump');
 const sequence = require('gulp-sequence');
 const git = require('gulp-git');
 const clean = require('gulp-clean');
+const jsdoc = require('gulp-jsdoc');
 
 gulp.task('nsp', (cb) => {
     return nsp({package: `${__dirname}/package.json`}, cb);
+});
+
+gulp.task('clean-docs', () => {
+    return gulp.src('docs', {read: false})
+        .pipe(clean());
+});
+
+gulp.task('jsdoc', ['clean-docs', 'babel'], () => {
+    return gulp.src('./lib/**/*.js')
+        .pipe(jsdoc('./docs'));
 });
 
 gulp.task('eslint', () => {
@@ -27,12 +38,12 @@ gulp.task('eslint', () => {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('clean', () => {
+gulp.task('clean-lib', () => {
     return gulp.src('lib', {read: false})
         .pipe(clean());
 });
 
-gulp.task('babel', ['clean'], () => {
+gulp.task('babel', ['clean-lib'], () => {
     return gulp.src('src/**/*.js')
         .pipe(babel({
             presets: ['es2015']
