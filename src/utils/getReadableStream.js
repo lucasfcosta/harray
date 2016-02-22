@@ -1,5 +1,12 @@
 let Readable = require('stream').Readable;
 
+/**
+ * Returns a readable stream which outputs each one of the Harray elements.
+ * @name Harray#getReadableStream
+ * @method
+ * @param {Number} [startIndex] - The index to start from when outputting content. Defaults to 0.
+ */
+
 export function getReadableStream(startIndex) {
     let rs = Readable();
 
