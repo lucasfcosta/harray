@@ -1,3 +1,10 @@
+/**
+ * Creates an object joining values from the Harray (which will be the keys) and values from the argument array (which will be the values).
+ * @name Harray#zip
+ * @method
+ * @param {Array} arr - An array of values.
+ * @returns {Object} An object whose keys come from the Harray and values come from the argument passed.
+ */
 export function zip(arr) {
     if (Object.prototype.toString.call(arr) !== '[object Array]') {
         throw new TypeError();
