@@ -4,6 +4,10 @@
  * @method
  * @param {Array} arr - An array of values.
  * @returns {Object} An object whose keys come from the Harray and values come from the argument passed.
+ * @example
+ * let harr = new Harray(0, 2);
+ * let fruits = ['apple', 'pear', 'banana', 'papaya'];
+ * harr.zip(fruits) // -> {0: 'apple', 2: 'pear', 4: 'banana', 6: 'papaya'}
  */
 export function zip(arr) {
     if (Object.prototype.toString.call(arr) !== '[object Array]') {
