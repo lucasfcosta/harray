@@ -14,6 +14,33 @@ import { getReadableStream } from './utils/getReadableStream';
  * @param {Function} formula - A formula which will be used to calculate the next element. If it does not exist
  * the difference between the last two elements will be used as increment value to generate the sequence.
  * If there's a single element and no formula was provided the sequence will be generated using 1 as increment.
+ * @example
+ * let evensHarray = new Harray(0, 2);
+ * evensHarray.get(2) // -> 4
+ * evensHarray.get(5) // -> 10
+ *
+ * let oddsHarray = new Harray(1, 3);
+ * oddsHarray.get(3) // -> 7
+ * oddsHarray.get(4) // -> 9
+ *
+ * let binaryHarray = new Harray(1, function(element) {
+ *      return element * 2;
+ * };
+ *
+ * binaryHarray.get(1) // -> 2
+ * binaryHarray.get(2) // -> 4
+ * binaryHarray.get(3) // -> 8
+ *
+ * let nonUniformHarray = new Harray(1, 10, 22, 24);
+ * nonUniformHarray.get(1) // -> 10
+ * nonUniformHarray.get(3) // -> 24
+ * nonUniformHarray.get(4) // -> 26
+ * nonUniformHarray.get(5) // -> 28
+ *
+ * let oneItemHarray = new Harray(10);
+ * oneItemHarray.get(0) // -> 10
+ * oneItemHarray.get(1) // -> 11
+ * oneItemHarray.get(2) // -> 12
  */
 function Harray() {
     let args = arguments;
@@ -71,6 +98,16 @@ Harray.prototype.get = function get(index) {
  * @name Harray.addMethod
  * @param {String} methodName - The name of the property which will hold the method.
  * @param {Function} method - The method which will be added to the prototype.
+ * @example
+ * let getDoubleFunction = function(index) {
+ *      return this.get(i) * 2;
+ * }
+ *
+ * Harray.addMethod('getDouble', getDoubleFunction);
+ *
+ * let harr = new Harray(1, 2);
+ * harr.getDouble(0) // -> 2
+ * harr.getDouble(1) // -> 4
  */
 Harray.addMethod = function addMethod(methodName, method) {
     Harray.prototype[methodName] = method;
