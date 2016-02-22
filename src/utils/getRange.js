@@ -7,6 +7,12 @@
  * @param {Number} [start] - The initial index. Defaults to 0.
  * @param {Number} [end] - The final index. Defaults to 0.
  * @returns rangeArray - An array of numbers from the initial index until the final index (inclusively).
+ * @example
+ * let harr = new Harray(0, 2);
+ * let firstTenEvens = [];
+ * harr.getRange(0, 9);
+ *
+ * console.log(firstTenEvens) // -> [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
  */
 export function getRange(start, end) {
     start = typeof start === 'number' ? start : 0;
