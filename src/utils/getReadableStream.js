@@ -6,6 +6,18 @@ let Readable = require('stream').Readable;
  * @name Harray#getReadableStream
  * @method
  * @param {Number} [startIndex] - The index to start from when outputting content. Defaults to 0.
+ * @example
+ * // Prints an odd number to the console every two seconds
+ * let harr = new Harray(1, 3);
+ * let positiveOddsStream = harr.getReadableStream();
+ *
+ * positiveOddsStream.on('data', function(chunk) {
+ *      positiveOddsStream.pause();
+ *      console.log(chunk.toString());
+ *      setTimeout(function() {
+ *          positiveOddsStream.resume();
+ *      }, 2000);
+ * });
  */
 
 export function getReadableStream(startIndex) {
