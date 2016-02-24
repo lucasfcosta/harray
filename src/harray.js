@@ -11,8 +11,8 @@ import { getReadableStream } from './utils/getReadableStream';
  * @classdesc An infinite array.
  * @property {Infinity} length - Returns the length of the Harray. (TIP: It's infinite)
  * @param {...Number} element - Every number passed as argument before the formula will be used as an element.
- * @param {Function} formula - A formula which will be used to calculate the next element. If it does not exist
- * the difference between the last two elements will be used as increment value to generate the sequence.
+ * @param {Harray~formula} formula - A formula which will be used to calculate the next element.<br>
+ * If it does not exist the difference between the last two elements will be used as increment value to generate the sequence.<br>
  * If there's a single element and no formula was provided the sequence will be generated using 1 as increment.
  * @example
  * let evensHarray = new Harray(0, 2);
@@ -68,6 +68,23 @@ function Harray() {
 }
 
 Harray.prototype.length = Infinity;
+
+/**
+ * This is the formula that will be used to generate the next element in the sequence.
+ * It receives the current element, does whatever you want with it and then returns the next element for the sequence.
+ * @typedef Harray~formula
+ * @param {*} element - An element of the sequence.
+ * @returns nextElement - The next element for the sequence.
+ * @example
+ * let timesTen = function(element) {
+ *   return element * 10;
+ * }
+ *
+ * let harr = new Harray(2, timesTen);
+ * harr.get(0) // -> 2
+ * harr.get(1) // -> 20
+ * harr.get(2) // -> 200
+ */
 
 /**
  * Gets the value from an index.
