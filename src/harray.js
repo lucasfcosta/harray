@@ -72,7 +72,7 @@ Harray.prototype.length = Infinity;
 /**
  * This is the formula that will be used to generate the next element in the sequence.
  * It receives the current element, does whatever you want with it and then returns the next element for the sequence.
- * @typedef Harray~formula
+ * @callback Harray~formula
  * @param {*} element - An element of the sequence.
  * @returns nextElement - The next element for the sequence.
  * @example
