@@ -9,9 +9,9 @@ describe('Zip Method', () => {
         let fruits = ['apple', 'banana', 'pineapple'];
         let zipped = h.zip(fruits);
 
-        assert.deepEqual(zipped[0], {0: 'apple'});
-        assert.deepEqual(zipped[1], {2: 'banana'});
-        assert.deepEqual(zipped[2], {4: 'pineapple'});
+        assert.deepEqual(zipped[0], 'apple')
+        assert.deepEqual(zipped[2], 'banana');
+        assert.deepEqual(zipped[4], 'pineapple');
     });
 
     it('Throws a TypeError if the argument is not an array', () => {
