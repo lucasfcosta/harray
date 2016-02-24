@@ -14,7 +14,7 @@ const bump = require('gulp-bump');
 const sequence = require('gulp-sequence');
 const git = require('gulp-git');
 const clean = require('gulp-clean');
-const jsdoc = require('gulp-jsdoc');
+const jsdoc = require('gulp-jsdoc3');
 
 gulp.task('nsp', (cb) => {
     return nsp({package: `${__dirname}/package.json`}, cb);
@@ -26,8 +26,8 @@ gulp.task('clean-docs', () => {
 });
 
 gulp.task('jsdoc', ['clean-docs', 'babel'], () => {
-    return gulp.src('./lib/**/*.js')
-        .pipe(jsdoc('./docs'));
+    return gulp.src(['./lib/**/*.js', 'README.md'], {read: false})
+        .pipe(jsdoc(require('./jsdoc.json')))
 });
 
 gulp.task('eslint', () => {

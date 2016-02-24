@@ -1,0 +1,28 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "plugins": [],
+    "templates": {
+        "systemName": "Harray",
+        "footer": "<center><a href=\"https://github.com/lucasfcosta/harray\">Fork me on GitHub</a> | Created by <a href=\"http://lucasfcosta.com\">@lucasfcosta</a></center>",
+        "copyright":  "<br>",
+        "includeDate": true,
+        "navType": "vertical",
+        "theme": "flatly",
+        "linenums": true,
+        "collapseSymbols": true,
+        "inverseNav": false,
+        "outputSourceFiles": true,
+        "outputSourcePath": true,
+        "dateFormat": "dddd, MMMM Do YYYY",
+        "syntaxTheme": "default",
+        "sort": true
+    },
+    "opts": {
+        "encoding": "utf8",
+        "destination": "./docs/",
+        "recurse": true
+    }
+}
