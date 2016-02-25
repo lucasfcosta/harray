@@ -27,10 +27,10 @@ describe('Some Method', () => {
 
         h.some(function(el) {
             if (el > 10) {
-                return false;
+                return true;
             } else {
                 actual.push(el);
-                return true;
+                return false;
             }
         }, 2);
 
