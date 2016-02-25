@@ -5,6 +5,7 @@ import { zip } from './utils/zip';
 import { some } from './utils/some';
 import { every } from './utils/every';
 import { getReadableStream } from './utils/getReadableStream';
+import { indexOf } from './utils/indexOf';
 
 /**
  * @class Harray
@@ -139,5 +140,7 @@ Harray.addMethod('some', some);
 Harray.addMethod('every', every);
 
 Harray.addMethod('getReadableStream', getReadableStream);
+
+Harray.addMethod('indexOf', indexOf);
 
 module.exports = Harray;
