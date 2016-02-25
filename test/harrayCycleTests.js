@@ -4,8 +4,17 @@ const assert = require('chai').assert;
 const Harray = require('../lib/harray');
 
 describe('Cycle Harray Creation', () => {
-    it('Creates a Harray with a cycle', () => {
+    it('Creates a Harray with a cycle providing an array', () => {
         let h = Harray.cycle([1, 2, 3]);
+
+        assert.strictEqual(h.get(2), 3);
+        assert.strictEqual(h.get(3), 1);
+        assert.strictEqual(h.get(4), 2);
+        assert.strictEqual(h.get(6), 1);
+    });
+
+    it('Creates a Harray with a cycle providing multiple arguments', () => {
+        let h = Harray.cycle(1, 2, 3);
 
         assert.strictEqual(h.get(2), 3);
         assert.strictEqual(h.get(3), 1);

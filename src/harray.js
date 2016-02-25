@@ -116,7 +116,7 @@ Harray.prototype.get = function get(index) {
  * Creates a Harray object which repeats the given cycle.
  * @method
  * @name Harray.cycle
- * @param {...*} cycle - Arguments you want to use to create a cycle or an array.
+ * @param {...*|Array} cycle - Arguments you want to use to create a cycle or an array of elements.
  * @returns Harray - A Harray object which repeats the given cycle.
  * @example
  * let cycle = Harray.cycle(1, 2, 3);
@@ -124,10 +124,15 @@ Harray.prototype.get = function get(index) {
  * cycle.get(2) // -> 3
  * cycle.get(3) // -> 1
  * cycle.get(4) // -> 2
+ *
+ * let anotherCycle = Harray.cycle([0, 1]);
+ * anotherCycle.get(1) // -> 1
+ * anotherCycle.get(2) // -> 0
  */
 Harray.cycle = function cycle(cycleElements) {
     let h = new Harray();
-    h.cycle = cycleElements;
+
+    h.cycle = arguments.length > 1 ? Array.prototype.slice.call(arguments) : cycleElements;
 
     h.get = function(index) {
         if (this[index] !== undefined) {
