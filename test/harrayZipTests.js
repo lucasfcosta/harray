@@ -9,7 +9,7 @@ describe('Zip Method', () => {
         let fruits = ['apple', 'banana', 'pineapple'];
         let zipped = h.zip(fruits);
 
-        assert.deepEqual(zipped[0], 'apple')
+        assert.deepEqual(zipped[0], 'apple');
         assert.deepEqual(zipped[2], 'banana');
         assert.deepEqual(zipped[4], 'pineapple');
     });

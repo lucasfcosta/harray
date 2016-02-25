@@ -27,7 +27,7 @@ gulp.task('clean-docs', () => {
 
 gulp.task('jsdoc', ['clean-docs', 'babel'], () => {
     return gulp.src(['./lib/**/*.js', 'README.md'], {read: false})
-        .pipe(jsdoc(require('./jsdoc.json')))
+        .pipe(jsdoc(require('./jsdoc.json')));
 });
 
 gulp.task('eslint', () => {
