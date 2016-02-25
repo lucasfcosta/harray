@@ -11,6 +11,8 @@ import { indexOf } from './utils/indexOf';
  * @class Harray
  * @classdesc An infinite array.
  * @property {Infinity} length - Returns the length of the Harray. (TIP: It's infinite)
+ * @property {Array} cycle - If the harray uses a finite cycle to generate its elements, the cycle will be here, otherwise it will be undefined.<br>
+ * Please see the [Harray.cycle() method]{@link Harray.cycle}.
  * @param {...Number} element - Every number passed as argument before the formula will be used as an element.
  * @param {Harray~formula} formula - A formula which will be used to calculate the next element.<br>
  * If it does not exist the difference between the last two elements will be used as increment value to generate the sequence.<br>
@@ -102,12 +104,42 @@ Harray.prototype.get = function get(index) {
         let result = this[lastKey];
 
         for (let i = lastKey; i < index; i++) {
-            result = this.formula(result);
+            result = this.formula(result, i);
             this[i + 1] = result;
         }
 
         return this[index] = result;
     }
+};
+
+/**
+ * Creates a Harray object which repeats the given cycle.
+ * @method
+ * @name Harray.cycle
+ * @param {...*} cycle - Arguments you want to use to create a cycle or an array.
+ * @returns Harray - A Harray object which repeats the given cycle.
+ * @example
+ * let cycle = Harray.cycle(1, 2, 3);
+ *
+ * cycle.get(2) // -> 3
+ * cycle.get(3) // -> 1
+ * cycle.get(4) // -> 2
+ */
+Harray.cycle = function cycle(cycleElements) {
+    let h = new Harray();
+    h.cycle = cycleElements;
+
+    h.get = function(index) {
+        if (this[index] !== undefined) {
+            return this[index];
+        } else {
+            let result = this.cycle[index % this.cycle.length];
+            this[index] = result;
+            return result;
+        }
+    };
+
+    return h;
 };
 
 /**
