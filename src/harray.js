@@ -116,7 +116,7 @@ Harray.prototype.get = function get(index) {
         let result = this[lastKey];
 
         for (let i = lastKey; i < index; i++) {
-            result = this.formula(result, i);
+            result = this.formula(result, i + 1);
             this[i + 1] = result;
         }
 

@@ -45,6 +45,16 @@ describe('Harray Object', () => {
             assert.strictEqual(h.get(2), 34);
         });
 
+        it('Formula accepts an index as argument to calculate the next result', () => {
+            let h = new Harray(1, (element, index) => {
+                return index + 2;
+            });
+
+            assert.strictEqual(h.get(0), 1);
+            assert.strictEqual(h.get(1), 3);
+            assert.strictEqual(h.get(3), 5);
+        });
+
         it('Uses last two arguments as steps if more than 2 arguments were provided', () => {
             let h = new Harray(1, 99, 100);
             assert.strictEqual(h.get(3), 101);
