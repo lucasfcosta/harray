@@ -14,6 +14,20 @@ describe('Harray Object', () => {
             assert.strictEqual(h.get(3), 4);
         });
 
+        it('Accepts an array of elements', () => {
+            let h = new Harray([1, 4]);
+            assert.strictEqual(h.get(1), 4);
+            assert.strictEqual(h.get(2), 7);
+
+            let hFormula = new Harray([2, 6], (element) => {
+                return element * 2;
+            });
+            assert.strictEqual(hFormula.get(0), 2);
+            assert.strictEqual(hFormula.get(1), 6);
+            assert.strictEqual(hFormula.get(2), 12);
+            assert.strictEqual(hFormula.get(3), 24);
+        });
+
         it('Creates a Harray object given two steps', () => {
             let h = new Harray(1, 4);
             assert.strictEqual(h.get(2), 7);

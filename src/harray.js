@@ -13,7 +13,7 @@ import { indexOf } from './utils/indexOf';
  * @property {Infinity} length - Returns the length of the Harray. (TIP: It's infinite)
  * @property {Array} cycle - If the harray uses a finite cycle to generate its elements, the cycle will be here, otherwise it will be undefined.<br>
  * Please see the [Harray.cycle() method]{@link Harray.cycle}.
- * @param {...Number} element - Every number passed as argument before the formula will be used as an element.
+ * @param {...Number | Array} element - Every number passed as argument before the formula will be used as an element. You can also pass an array as the first argument instead of multiple elements.
  * @param {Harray~formula} formula - A formula which will be used to calculate the next element.<br>
  * If it does not exist the difference between the last two elements will be used as increment value to generate the sequence.<br>
  * If there's a single element and no formula was provided the sequence will be generated using 1 as increment.
@@ -44,9 +44,21 @@ import { indexOf } from './utils/indexOf';
  * oneItemHarray.get(0) // -> 10
  * oneItemHarray.get(1) // -> 11
  * oneItemHarray.get(2) // -> 12
+ *
+ * let oneItemHarray = new Harray([20, 30]);
+ * oneItemHarray.get(0) // -> 20
+ * oneItemHarray.get(1) // -> 30
+ * oneItemHarray.get(2) // -> 40
  */
 function Harray() {
     let args = arguments;
+
+    if (Object.prototype.toString.call(arguments[0]) === '[object Array]') {
+        args = arguments[0];
+        if (typeof arguments[1] === 'function') {
+            args.push(arguments[1]);
+        }
+    }
 
     this.formula = function (el) {
         return el + 1;
