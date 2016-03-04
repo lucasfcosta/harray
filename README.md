@@ -2,7 +2,7 @@
 
 # [Harray](https://lucasfcosta.github.io/harray)
 
-An infinite array implementation in JavaScript. This was heavily inspired by Haskell.
+An infinite array implementation in JavaScript.
 
 [![NPM](https://nodei.co/npm/harray.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/harray/)
 
