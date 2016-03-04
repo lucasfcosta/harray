@@ -88,7 +88,8 @@ Harray.prototype.length = Infinity;
  * This is the formula that will be used to generate the next element in the sequence.
  * It receives the current element, does whatever you want with it and then returns the next element for the sequence.
  * @callback Harray~formula
- * @param {*} element - An element of the sequence.
+ * @param {*} element - The element before the one being calculated now.
+ * @param {Number} index - The index for the element being calculated now.
  * @returns nextElement - The next element for the sequence.
  * @example
  * let timesTen = function(element) {
@@ -99,6 +100,16 @@ Harray.prototype.length = Infinity;
  * harr.get(0) // -> 2
  * harr.get(1) // -> 20
  * harr.get(2) // -> 200
+ *
+ * let twoTimesIndex = function(element, index) {
+ *   return index * 2;
+ * }
+ *
+ * let anotherHarr = new Harray(0, twoTimesIndex);
+ * harr.get(0) // -> 0
+ * harr.get(1) // -> 2
+ * harr.get(2) // -> 4
+ *
  */
 
 /**
