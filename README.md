@@ -2,6 +2,17 @@
 
 An infinite array implementation in JavaScript. This was heavily inspired by Haskell.
 
+[![NPM](https://nodei.co/npm/harray.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/harray/)
+
+
+## Installing
+
+To install Harray you've just gotta type `npm install harray` on your console.
+
+```
+$ npm install harray
+```
+
 
 ## Getting Started
 
