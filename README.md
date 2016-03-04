@@ -1,4 +1,6 @@
-# [Harray](https://lucasfcosta.github.io/harray) [![Build Status](https://travis-ci.org/lucasfcosta/harray.svg?branch=master)](https://travis-ci.org/lucasfcosta/harray) [![Coverage Status](https://coveralls.io/repos/github/lucasfcosta/harray/badge.svg?branch=master)](https://coveralls.io/github/lucasfcosta/harray?branch=master)
+[![Build Status](https://travis-ci.org/lucasfcosta/harray.svg?branch=master)](https://travis-ci.org/lucasfcosta/harray) [![Coverage Status](https://coveralls.io/repos/github/lucasfcosta/harray/badge.svg?branch=master)](https://coveralls.io/github/lucasfcosta/harray?branch=master)
+
+# [Harray](https://lucasfcosta.github.io/harray)
 
 An infinite array implementation in JavaScript. This was heavily inspired by Haskell.
 
