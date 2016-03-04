@@ -1,4 +1,4 @@
-# Harray [![Build Status](https://travis-ci.org/lucasfcosta/harray.svg?branch=master)](https://travis-ci.org/lucasfcosta/harray) [![Coverage Status](https://coveralls.io/repos/github/lucasfcosta/harray/badge.svg?branch=master)](https://coveralls.io/github/lucasfcosta/harray?branch=master)
+# [Harray](https://lucasfcosta.github.io/harray) [![Build Status](https://travis-ci.org/lucasfcosta/harray.svg?branch=master)](https://travis-ci.org/lucasfcosta/harray) [![Coverage Status](https://coveralls.io/repos/github/lucasfcosta/harray/badge.svg?branch=master)](https://coveralls.io/github/lucasfcosta/harray?branch=master)
 
 An infinite array implementation in JavaScript. This was heavily inspired by Haskell.
 
@@ -7,7 +7,7 @@ An infinite array implementation in JavaScript. This was heavily inspired by Has
 
 ## Installing
 
-To install Harray you've just gotta type `npm install harray` on your console.
+To install Harray you just need to type `npm install harray` on your console.
 
 ```
 $ npm install harray
