@@ -111,8 +111,6 @@
         <th>Type</th>
 
         
-        <th>Argument</th>
-        
 
         
 
@@ -132,6 +130,9 @@
             
                 
 <span class="param-type">Number</span>
+|
+
+<span class="param-type">Array</span>
 
 
 
@@ -139,20 +140,10 @@
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;repeatable><br>
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>Every number passed as argument before the formula will be used as an element.</p></td>
+            <td class="description last"><p>Every number passed as argument before the formula will be used as an element. You can also pass an array as the first argument instead of multiple elements.</p></td>
         </tr>
 
     
@@ -172,14 +163,6 @@
             
             </td>
 
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
             
 
             
@@ -246,6 +229,31 @@ If there's a single element and no formula was provided the sequence will be gen
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>cycle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If the harray uses a finite cycle to generate its elements, the cycle will be here, otherwise it will be undefined.<br>
+Please see the <a href="Harray.html#.cycle">Harray.cycle() method</a>.</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 </dl>
@@ -282,13 +290,6 @@ If there's a single element and no formula was provided the sequence will be gen
 
 	
 
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li>Documentation</li>
-			</ul>
-	</dd>
 	
 
 	
@@ -335,7 +336,12 @@ nonUniformHarray.get(5) // -&gt; 28
 let oneItemHarray = new Harray(10);
 oneItemHarray.get(0) // -&gt; 10
 oneItemHarray.get(1) // -&gt; 11
-oneItemHarray.get(2) // -&gt; 12</pre>
+oneItemHarray.get(2) // -&gt; 12
+
+let oneItemHarray = new Harray([20, 30]);
+oneItemHarray.get(0) // -&gt; 20
+oneItemHarray.get(1) // -&gt; 30
+oneItemHarray.get(2) // -&gt; 40</pre>
 
 
     
@@ -520,6 +526,162 @@ Harray.addMethod(&#x27;getDouble&#x27;, getDoubleFunction);
 let harr = new Harray(1, 2);
 harr.getDouble(0) // -&gt; 2
 harr.getDouble(1) // -&gt; 4</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".cycle"><span class="type-signature">&lt;static> </span>cycle(cycle)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Creates a Harray object which repeats the given cycle.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cycle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+|
+
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Arguments you want to use to create a cycle or an array of elements.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Harray - A Harray object which repeats the given cycle.</p>
+</div>
+
+
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">let cycle = Harray.cycle(1, 2, 3);
+
+cycle.get(2) // -&gt; 3
+cycle.get(3) // -&gt; 1
+cycle.get(4) // -&gt; 2
+
+let anotherCycle = Harray.cycle([0, 1]);
+anotherCycle.get(1) // -&gt; 1
+anotherCycle.get(2) // -&gt; 0</pre>
 
 
     
@@ -1246,6 +1408,167 @@ positiveOddsStream.on(&#x27;data&#x27;, function(chunk) {
             
 <hr>
 <dt>
+    <h4 class="name" id="indexOf"><span class="type-signature"></span>indexOf(element)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Returns the index of an element into the Harray.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Any element in the Harray.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The index of that element in the Harray</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">let harr = new Harray(0, 5);
+
+harr.indexOf(5) // -&gt; 1
+harr.indexOf(20) // -&gt; 5</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="some"><span class="type-signature"></span>some(fn, <span class="optional">index</span>)</h4>
     
     
@@ -1629,7 +1952,7 @@ harr.zip(fruits) // -&gt; {0: &#x27;apple&#x27;, 2: &#x27;pear&#x27;, 4: &#x27;b
                 
 <hr>
 <dt>
-    <h4 class="name" id="~formula"><span class="type-signature"></span>formula(element)</h4>
+    <h4 class="name" id="~formula"><span class="type-signature"></span>formula(element, index)</h4>
     
     
 </dt>
@@ -1690,7 +2013,31 @@ It receives the current element, does whatever you want with it and then returns
 
             
 
-            <td class="description last"><p>An element of the sequence.</p></td>
+            <td class="description last"><p>The element before the one being calculated now.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The index for the element being calculated now.</p></td>
         </tr>
 
     
@@ -1772,7 +2119,16 @@ It receives the current element, does whatever you want with it and then returns
 let harr = new Harray(2, timesTen);
 harr.get(0) // -&gt; 2
 harr.get(1) // -&gt; 20
-harr.get(2) // -&gt; 200</pre>
+harr.get(2) // -&gt; 200
+
+let twoTimesIndex = function(element, index) {
+  return index * 2;
+}
+
+let anotherHarr = new Harray(0, twoTimesIndex);
+harr.get(0) // -&gt; 0
+harr.get(1) // -&gt; 2
+harr.get(2) // -&gt; 4</pre>
 
 
     
@@ -1824,7 +2180,7 @@ harr.get(2) // -&gt; 200</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on February 24th 2016, 5:53:29 pm
+		on March 4th 2016, 2:22:33 pm
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
