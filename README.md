@@ -43,7 +43,7 @@ const Harray = require('harray');
 
 let timesTwo = new Harray(1, function(element) {
     // `element` represents the value before the one being calculated now
-    return element2;
+    return element * 2;
 });
 
 timesTwo.get(0); // -> 1
