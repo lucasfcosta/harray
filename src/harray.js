@@ -164,6 +164,32 @@ Harray.prototype.set = function set(index, value) {
 };
 
 /**
+ * Defines an iterator for Harray.
+ * @method
+ * @returns GeneratorFunctionPrototype
+ */
+Harray.prototype[Symbol.iterator] = function*() {
+    let index = 0;
+
+    while (true) { // eslint-disable-line no-constant-condition
+        const reset = yield this.get(index++);
+
+        if (reset) {
+            index = 0;
+        }
+    }
+};
+
+/** Gets the Harray iterator.
+ * @name Harray#getIterator
+ * @method
+ * @returns GeneratorFunctionPrototype
+ */
+Harray.prototype.getIterator = function*() {
+    yield* this[Symbol.iterator]();
+};
+
+/**
  * Creates a Harray object which repeats the given cycle.
  * @method
  * @name Harray.cycle

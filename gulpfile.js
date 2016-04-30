@@ -46,6 +46,7 @@ gulp.task('clean-lib', function() {
 gulp.task('babel', ['clean-lib'], function() {
     return gulp.src('src/**/*.js')
         .pipe(babel({
+            plugins: ['transform-runtime'],
             presets: ['es2015']
         }))
         .pipe(gulp.dest('lib'));
