@@ -61,7 +61,7 @@ gulp.task('pre-test', ['babel'], function() {
 });
 
 gulp.task('test', ['pre-test'], function(cb) {
-    let mochaErr;
+    var mochaErr;
 
     gulp.src('test/**/*.js')
         .pipe(plumber())
@@ -91,7 +91,7 @@ gulp.task('bump', function() {
         throw new Error('Please provide an argument with increase type: --patch, --minor or --major');
     }
 
-    let type = process.argv[process.argv.length - 1].slice(2).toLowerCase();
+    var type = process.argv[process.argv.length - 1].slice(2).toLowerCase();
     if (type !== 'patch' && type !== 'minor' && type !== 'major') {
         throw new Error('Please provide a valid version increase type: --patch, --minor or --major');
     }
@@ -103,8 +103,8 @@ gulp.task('bump', function() {
 
 gulp.task('tag', ['bump'], function() {
     delete require.cache[require.resolve('./package.json')];
-    let versionNumber = require('./package.json').version;
-    let version = 'v' + versionNumber';
+    var versionNumber = require('./package.json').version;
+    var version = 'v' + versionNumber;
 
     if (typeof versionNumber !== 'string') {
         throw new Error('Current package.json version is invalid.');
