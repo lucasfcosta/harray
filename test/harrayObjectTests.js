@@ -67,6 +67,21 @@ describe('Harray Object', () => {
         });
     });
 
+    describe('Proxified Harray', () => {
+        it('Should have directly acessible indexes if environment supports proxies', () => {
+            if (Proxy !== undefined) {
+                const h1 = new Harray(1, 99, 100);
+                assert.strictEqual(h1[3], 101);
+
+                const h2 = new Harray(1, 100, 99);
+                assert.strictEqual(h2[3], 98);
+
+                const h3 = new Harray(1, 100, 150, 155);
+                assert.strictEqual(h3[4], 160);
+            }
+        });
+    });
+
     describe('Harray Cache Values', () => {
         afterEach(() => {
             sandbox.restore();

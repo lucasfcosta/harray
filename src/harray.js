@@ -30,6 +30,12 @@ import { indexOf } from './utils/indexOf';
  *      return element * 2;
  * };
  *
+ * // If your environment supports Proxies you can access elements directly using brackets notation
+ * binaryHarray[1] // -> 2
+ * binaryHarray[2] // -> 4
+ * binaryHarray[3] // -> 8
+ *
+ * // Otherwise you can use `.get(x)`
  * binaryHarray.get(1) // -> 2
  * binaryHarray.get(2) // -> 4
  * binaryHarray.get(3) // -> 8
@@ -80,6 +86,14 @@ function Harray() {
             return el + args[args.length - 1] - args[args.length - 2];
         };
     }
+
+    if (Proxy !== undefined) {
+        return new Proxy(this, {
+            get: (target, index) => {
+                return this.get(index);
+            }
+        })
+    }
 }
 
 Harray.prototype.length = Infinity;
@@ -114,6 +128,7 @@ Harray.prototype.length = Infinity;
 
 /**
  * Gets the value from an index.
+ * If your environment supports proxies you can directly access values using brackets notation, just like: `myHarray[1]`.
  * @method
  * @name Harray#get
  * @param {Number} index - A value's index.
