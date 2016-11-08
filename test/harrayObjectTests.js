@@ -120,6 +120,29 @@ describe('Harray Object', () => {
             // Should have been called twice because it gets called for indexes 2 and 3 only
             assert.isTrue(formulaSpy.calledTwice);
         });
+
+        it('Does not run the formula for user defined indexes', () => {
+            let h = new Harray(3, 6);
+            let formulaSpy = sandbox.spy(h, 'formula');
+            h.set(2, 88);
+            h.get(2);
+
+            assert.isFalse(formulaSpy.called);
+        });
+
+        it('Returns the set value for user defined indexes', () => {
+            let h = new Harray(3, 6);
+            h.set(2, 88);
+
+            assert.strictEqual(h.get(2), 88);
+        });
+
+        it('Is possible to set values for indexes using brackets notation', () => {
+            let h = new Harray(3, 6);
+            h[2] = 88;
+
+            assert.strictEqual(h.get(2), 88);
+        })
     });
 
     describe('Length Property', () => {

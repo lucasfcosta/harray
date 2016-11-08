@@ -151,6 +151,19 @@ Harray.prototype.get = function get(index) {
 };
 
 /**
+ * Sets the value for an index.
+ * @method
+ * @name Harray#set
+ * @param {Number} index - An index.
+ * @param {*} index - The value for that index.
+ * @returns harray - The Harray instance in which the value has been set.
+ */
+Harray.prototype.set = function set(index, value) {
+    this[index] = value;
+    return this;
+};
+
+/**
  * Creates a Harray object which repeats the given cycle.
  * @method
  * @name Harray.cycle
