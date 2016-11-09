@@ -17,7 +17,7 @@ var clean = require('gulp-clean');
 var jsdoc = require('gulp-jsdoc3');
 
 gulp.task('nsp', function(cb) {
-    return nsp({package: `${__dirname}/package.json`}, cb);
+    return nsp({package: __dirname + '/package.json'}, cb);
 });
 
 gulp.task('clean-docs', function() {
@@ -46,6 +46,7 @@ gulp.task('clean-lib', function() {
 gulp.task('babel', ['clean-lib'], function() {
     return gulp.src('src/**/*.js')
         .pipe(babel({
+            plugins: ['transform-runtime'],
             presets: ['es2015']
         }))
         .pipe(gulp.dest('lib'));
@@ -60,7 +61,7 @@ gulp.task('pre-test', ['babel'], function() {
 });
 
 gulp.task('test', ['pre-test'], function(cb) {
-    let mochaErr;
+    var mochaErr;
 
     gulp.src('test/**/*.js')
         .pipe(plumber())
@@ -87,12 +88,12 @@ gulp.task('watch', function() {
 
 gulp.task('bump', function() {
     if (process.argv.length < 3) {
-        throw new Error(`Please provide an argument with increase type: --patch, --minor or --major`);
+        throw new Error('Please provide an argument with increase type: --patch, --minor or --major');
     }
 
-    let type = process.argv[process.argv.length - 1].slice(2).toLowerCase();
+    var type = process.argv[process.argv.length - 1].slice(2).toLowerCase();
     if (type !== 'patch' && type !== 'minor' && type !== 'major') {
-        throw new Error(`Please provide a valid version increase type: --patch, --minor or --major`);
+        throw new Error('Please provide a valid version increase type: --patch, --minor or --major');
     }
 
     return gulp.src('./package.json')
@@ -102,17 +103,17 @@ gulp.task('bump', function() {
 
 gulp.task('tag', ['bump'], function() {
     delete require.cache[require.resolve('./package.json')];
-    let versionNumber = require('./package.json').version;
-    let version = `v${versionNumber}`;
+    var versionNumber = require('./package.json').version;
+    var version = 'v' + versionNumber;
 
     if (typeof versionNumber !== 'string') {
-        throw new Error(`Current package.json version is invalid.`);
+        throw new Error('Current package.json version is invalid.');
     }
 
     return gulp.src('./package.json')
         .pipe(git.add())
-        .pipe(git.commit(`Release ${version}`, {args: '--allow-empty'}))
-        .pipe(git.tag(version, `Release ${version}`, {args: '-a'}, function(err) {
+        .pipe(git.commit('Release ' + version, {args: '--allow-empty'}))
+        .pipe(git.tag(version, 'Release ' + version, {args: '-a'}, function(err) {
             if (!err) git.push('origin', null, {args: '--tags :'});
         }));
 });

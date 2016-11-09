@@ -168,4 +168,49 @@ describe('Harray Object', () => {
             assert.strictEqual(batHarray.batmanGet(3), 'Batman: 160');
         });
     });
+
+    describe('Harray Iterator', () => {
+        it('Has an iterator function', () => {
+            let h = new Harray();
+
+            assert.typeOf(h[Symbol.iterator], 'function')
+        });
+
+        it('Can be iterated', () => {
+            let harr = new Harray(0, 2);
+
+            assert.doesNotThrow(() => {
+                for (let h of harr) {
+                    break;
+                }
+            }, TypeError);
+        });
+
+        it('Harray#getIterator returns a working iterator', () => {
+            let h = new Harray(0, 2);
+            let i = h.getIterator();
+
+            assert.strictEqual(i.next().value, 0);
+            assert.strictEqual(i.next().value, 2);
+            assert.strictEqual(i.next().value, 4);
+        });
+
+        it('Done for Harray iterator is just false', () => {
+            let h = new Harray(0, 2);
+            let i = h.getIterator();
+
+            assert.isFalse(i.next().done);
+            assert.isFalse(i.next().done);
+            assert.isFalse(i.next().done);
+        });
+
+        it('Iterator can be reseted if next receives true', () => {
+            let h = new Harray(0, 2);
+            let i = h.getIterator();
+
+            assert.strictEqual(i.next().value, 0);
+            assert.strictEqual(i.next().value, 2);
+            assert.strictEqual(i.next(true).value, 0);
+        });
+    });
 });
