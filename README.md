@@ -28,11 +28,11 @@ First of all, let's create a simple Harray with every even number from one until
 'use strict';
 const Harray = require('harray');
 
-let fibonacci = new Harray(0, 2);
+let even = new Harray(0, 2);
 
 // Getting the third even number (the one on the index 2)
-fibonacci.get(2); // -> 4
-fibonacci.get(3); // -> 6
+even.get(2); // -> 4
+even.get(3); // -> 6
 ```
 
 Now let's use a formula to generate a sequence in which every value is two times the previous value:
