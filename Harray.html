@@ -4,14 +4,14 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: Harray</title>
+	<title>Harray Class: Harray</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
 
 </head>
 
@@ -20,7 +20,7 @@
 <div class="navbar navbar-default navbar-fixed-top ">
 <div class="container">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="index.html">Documentation</a>
+		<a class="navbar-brand" href="index.html">Harray</a>
 		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
@@ -38,16 +38,18 @@
 			</li>
 			
 		</ul>
-		<div class="col-sm-3 col-md-3">
-            <form class="navbar-form" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        
 	</div>
 
 </div>
@@ -72,7 +74,7 @@
         Harray
         </h2>
         
-            <div class="class-description"><p>An infinite array.</p></div>
+            <div class="class-description">An infinite array.</div>
         
     
 </header>
@@ -143,7 +145,7 @@
 
             
 
-            <td class="description last"><p>Every number passed as argument before the formula will be used as an element. You can also pass an array as the first argument instead of multiple elements.</p></td>
+            <td class="description last">Every number passed as argument before the formula will be used as an element. You can also pass an array as the first argument instead of multiple elements.</td>
         </tr>
 
     
@@ -167,9 +169,9 @@
 
             
 
-            <td class="description last"><p>A formula which will be used to calculate the next element.<br>
+            <td class="description last">A formula which will be used to calculate the next element.<br>
 If it does not exist the difference between the last two elements will be used as increment value to generate the sequence.<br>
-If there's a single element and no formula was provided the sequence will be generated using 1 as increment.</p></td>
+If there's a single element and no formula was provided the sequence will be generated using 1 as increment.</td>
         </tr>
 
     
@@ -225,7 +227,7 @@ If there's a single element and no formula was provided the sequence will be gen
 
             
 
-            <td class="description last"><p>Returns the length of the Harray. (TIP: It's infinite)</p></td>
+            <td class="description last">Returns the length of the Harray. (TIP: It's infinite)</td>
         </tr>
 
     
@@ -249,8 +251,8 @@ If there's a single element and no formula was provided the sequence will be gen
 
             
 
-            <td class="description last"><p>If the harray uses a finite cycle to generate its elements, the cycle will be here, otherwise it will be undefined.<br>
-Please see the <a href="Harray.html#.cycle">Harray.cycle() method</a>.</p></td>
+            <td class="description last">If the harray uses a finite cycle to generate its elements, the cycle will be here, otherwise it will be undefined.<br>
+Please see the <a href="Harray.html#.cycle">Harray.cycle() method</a>.</td>
         </tr>
 
     
@@ -286,6 +288,16 @@ Please see the <a href="Harray.html#.cycle">Harray.cycle() method</a>.</p></td>
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="harray.js.html">harray.js</a>,
+				 <a href="harray.js.html#sunlight-1-line-33">line 33</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -323,6 +335,12 @@ let binaryHarray = new Harray(1, function(element) {
      return element * 2;
 };
 
+// If your environment supports Proxies you can access elements directly using brackets notation
+binaryHarray[1] // -&gt; 2
+binaryHarray[2] // -&gt; 4
+binaryHarray[3] // -&gt; 8
+
+// Otherwise you can use &#x60;.get(x)&#x60;
 binaryHarray.get(1) // -&gt; 2
 binaryHarray.get(2) // -&gt; 4
 binaryHarray.get(3) // -&gt; 8
@@ -377,7 +395,7 @@ oneItemHarray.get(2) // -&gt; 40</pre>
 
     
     <div class="description">
-        <p>Adds a method to the Harray prototype.</p>
+        Adds a method to the Harray prototype.
     </div>
     
 
@@ -429,7 +447,7 @@ oneItemHarray.get(2) // -&gt; 40</pre>
 
             
 
-            <td class="description last"><p>The name of the property which will hold the method.</p></td>
+            <td class="description last">The name of the property which will hold the method.</td>
         </tr>
 
     
@@ -453,7 +471,7 @@ oneItemHarray.get(2) // -&gt; 40</pre>
 
             
 
-            <td class="description last"><p>The method which will be added to the prototype.</p></td>
+            <td class="description last">The method which will be added to the prototype.</td>
         </tr>
 
     
@@ -492,6 +510,16 @@ oneItemHarray.get(2) // -&gt; 40</pre>
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="harray.js.html">harray.js</a>,
+				 <a href="harray.js.html#sunlight-1-line-286">line 286</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -543,7 +571,7 @@ harr.getDouble(1) // -&gt; 4</pre>
 
     
     <div class="description">
-        <p>Creates a Harray object which repeats the given cycle.</p>
+        Creates a Harray object which repeats the given cycle.
     </div>
     
 
@@ -598,7 +626,7 @@ harr.getDouble(1) // -&gt; 4</pre>
 
             
 
-            <td class="description last"><p>Arguments you want to use to create a cycle or an array of elements.</p></td>
+            <td class="description last">Arguments you want to use to create a cycle or an array of elements.</td>
         </tr>
 
     
@@ -638,6 +666,16 @@ harr.getDouble(1) // -&gt; 4</pre>
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="harray.js.html">harray.js</a>,
+				 <a href="harray.js.html#sunlight-1-line-251">line 251</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -662,7 +700,7 @@ harr.getDouble(1) // -&gt; 4</pre>
     
             
 <div class="param-desc">
-    <p>Harray - A Harray object which repeats the given cycle.</p>
+    Harray - A Harray object which repeats the given cycle.
 </div>
 
 
@@ -691,7 +729,7 @@ anotherCycle.get(2) // -&gt; 0</pre>
             
 <hr>
 <dt>
-    <h4 class="name" id="every"><span class="type-signature"></span>every(fn, <span class="optional">index</span>)</h4>
+    <h4 class="name" id="%5Bundefined%5D"><span class="type-signature"></span>[undefined]()</h4>
     
     
 </dt>
@@ -699,7 +737,106 @@ anotherCycle.get(2) // -&gt; 0</pre>
 
     
     <div class="description">
-        <p>This method calls the callback function once for every element in the Harray until it returns a falsy value.</p>
+        Defines an iterator for Harray.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="harray.js.html">harray.js</a>,
+				 <a href="harray.js.html#sunlight-1-line-196">line 196</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    GeneratorFunctionPrototype
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="every"><span class="type-signature"></span>every(fn [, index])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        This method calls the callback function once for every element in the Harray until it returns a falsy value.
     </div>
     
 
@@ -761,8 +898,8 @@ anotherCycle.get(2) // -&gt; 0</pre>
 
             
 
-            <td class="description last"><p>A callback function which will be called with the element as the only argument.
-It should return a falsy value in order to stop the loop.</p></td>
+            <td class="description last">A callback function which will be called with the element as the only argument.
+It should return a falsy value in order to stop the loop.</td>
         </tr>
 
     
@@ -796,7 +933,7 @@ It should return a falsy value in order to stop the loop.</p></td>
 
             
 
-            <td class="description last"><p>A starting index. Default is 0.</p></td>
+            <td class="description last">A starting index. Default is 0.</td>
         </tr>
 
     
@@ -836,6 +973,16 @@ It should return a falsy value in order to stop the loop.</p></td>
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utils_every.js.html">utils/every.js</a>,
+				 <a href="utils_every.js.html#sunlight-1-line-7">line 7</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -861,7 +1008,7 @@ It should return a falsy value in order to stop the loop.</p></td>
 <dl>
     <dt>
         <div class="param-desc">
-        <p>Will throw a TypeError if no callback function was provided.</p>
+        Will throw a TypeError if no callback function was provided.
         </div>
     </dt>
     <dt>
@@ -917,7 +1064,8 @@ console.log(evensUntilTen) // -&gt; [0, 2, 4, 6, 8]</pre>
 
     
     <div class="description">
-        <p>Gets the value from an index.</p>
+        Gets the value from an index.
+If your environment supports proxies you can directly access values using brackets notation, just like: `myHarray[1]`.
     </div>
     
 
@@ -969,7 +1117,7 @@ console.log(evensUntilTen) // -&gt; [0, 2, 4, 6, 8]</pre>
 
             
 
-            <td class="description last"><p>A value's index.</p></td>
+            <td class="description last">A value's index.</td>
         </tr>
 
     
@@ -1009,6 +1157,16 @@ console.log(evensUntilTen) // -&gt; [0, 2, 4, 6, 8]</pre>
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="harray.js.html">harray.js</a>,
+				 <a href="harray.js.html#sunlight-1-line-154">line 154</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1033,7 +1191,7 @@ console.log(evensUntilTen) // -&gt; [0, 2, 4, 6, 8]</pre>
     
             
 <div class="param-desc">
-    <p>value - The value of an index.</p>
+    value - The value of an index.
 </div>
 
 
@@ -1048,7 +1206,7 @@ console.log(evensUntilTen) // -&gt; [0, 2, 4, 6, 8]</pre>
             
 <hr>
 <dt>
-    <h4 class="name" id="getRange"><span class="type-signature"></span>getRange(<span class="optional">start</span>, <span class="optional">end</span>)</h4>
+    <h4 class="name" id="getIterator"><span class="type-signature"></span>getIterator()</h4>
     
     
 </dt>
@@ -1056,9 +1214,108 @@ console.log(evensUntilTen) // -&gt; [0, 2, 4, 6, 8]</pre>
 
     
     <div class="description">
-        <p>Gets an aray with numbers from a start index until a final index (inclusively).
+        Gets the Harray iterator.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="harray.js.html">harray.js</a>,
+				 <a href="harray.js.html#sunlight-1-line-231">line 231</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    GeneratorFunctionPrototype
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getRange"><span class="type-signature"></span>getRange( [start] [, end])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Gets an aray with numbers from a start index until a final index (inclusively).
 If the final index is smaller then the initial index the returned array will be in the reverse order (from start to end, as expected).
-If only one argument is passed it will be used as the final index.</p>
+If only one argument is passed it will be used as the final index.
     </div>
     
 
@@ -1122,7 +1379,7 @@ If only one argument is passed it will be used as the final index.</p>
 
             
 
-            <td class="description last"><p>The initial index. Defaults to 0.</p></td>
+            <td class="description last">The initial index. Defaults to 0.</td>
         </tr>
 
     
@@ -1156,7 +1413,7 @@ If only one argument is passed it will be used as the final index.</p>
 
             
 
-            <td class="description last"><p>The final index. Defaults to 0.</p></td>
+            <td class="description last">The final index. Defaults to 0.</td>
         </tr>
 
     
@@ -1196,6 +1453,16 @@ If only one argument is passed it will be used as the final index.</p>
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utils_getRange.js.html">utils/getRange.js</a>,
+				 <a href="utils_getRange.js.html#sunlight-1-line-7">line 7</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1220,7 +1487,7 @@ If only one argument is passed it will be used as the final index.</p>
     
             
 <div class="param-desc">
-    <p>rangeArray - An array of numbers from the initial index until the final index (inclusively).</p>
+    rangeArray - An array of numbers from the initial index until the final index (inclusively).
 </div>
 
 
@@ -1245,7 +1512,7 @@ console.log(firstTenEvens) // -&gt; [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</pre>
             
 <hr>
 <dt>
-    <h4 class="name" id="getReadableStream"><span class="type-signature"></span>getReadableStream(<span class="optional">startIndex</span>)</h4>
+    <h4 class="name" id="getReadableStream"><span class="type-signature"></span>getReadableStream( [startIndex])</h4>
     
     
 </dt>
@@ -1253,7 +1520,7 @@ console.log(firstTenEvens) // -&gt; [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</pre>
 
     
     <div class="description">
-        <p>Returns a readable stream which outputs each one of the Harray elements.</p>
+        Returns a readable stream which outputs each one of the Harray elements.
     </div>
     
 
@@ -1317,7 +1584,7 @@ console.log(firstTenEvens) // -&gt; [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</pre>
 
             
 
-            <td class="description last"><p>The index to start from when outputting content. Defaults to 0.</p></td>
+            <td class="description last">The index to start from when outputting content. Defaults to 0.</td>
         </tr>
 
     
@@ -1356,6 +1623,16 @@ console.log(firstTenEvens) // -&gt; [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</pre>
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utils_getReadableStream.js.html">utils/getReadableStream.js</a>,
+				 <a href="utils_getReadableStream.js.html#sunlight-1-line-9">line 9</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1416,7 +1693,7 @@ positiveOddsStream.on(&#x27;data&#x27;, function(chunk) {
 
     
     <div class="description">
-        <p>Returns the index of an element into the Harray.</p>
+        Returns the index of an element into the Harray.
     </div>
     
 
@@ -1468,7 +1745,7 @@ positiveOddsStream.on(&#x27;data&#x27;, function(chunk) {
 
             
 
-            <td class="description last"><p>Any element in the Harray.</p></td>
+            <td class="description last">Any element in the Harray.</td>
         </tr>
 
     
@@ -1508,6 +1785,16 @@ positiveOddsStream.on(&#x27;data&#x27;, function(chunk) {
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utils_indexOf.js.html">utils/indexOf.js</a>,
+				 <a href="utils_indexOf.js.html#sunlight-1-line-7">line 7</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1532,7 +1819,7 @@ positiveOddsStream.on(&#x27;data&#x27;, function(chunk) {
     
             
 <div class="param-desc">
-    <p>The index of that element in the Harray</p>
+    The index of that element in the Harray
 </div>
 
 
@@ -1569,7 +1856,7 @@ harr.indexOf(20) // -&gt; 5</pre>
             
 <hr>
 <dt>
-    <h4 class="name" id="some"><span class="type-signature"></span>some(fn, <span class="optional">index</span>)</h4>
+    <h4 class="name" id="set"><span class="type-signature"></span>set(index, index)</h4>
     
     
 </dt>
@@ -1577,7 +1864,180 @@ harr.indexOf(20) // -&gt; 5</pre>
 
     
     <div class="description">
-        <p>This method calls the callback function once for every element in the Harray until it returns a truthy value.</p>
+        Sets the value for an index.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An index.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value for that index.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="harray.js.html">harray.js</a>,
+				 <a href="harray.js.html#sunlight-1-line-178">line 178</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    harray - The Harray instance in which the value has been set.
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="some"><span class="type-signature"></span>some(fn [, index])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        This method calls the callback function once for every element in the Harray until it returns a truthy value.
     </div>
     
 
@@ -1639,8 +2099,8 @@ harr.indexOf(20) // -&gt; 5</pre>
 
             
 
-            <td class="description last"><p>A callback function which will be called with the element as the only argument.
-It should return a truthy value in order to stop the loop.</p></td>
+            <td class="description last">A callback function which will be called with the element as the only argument.
+It should return a truthy value in order to stop the loop.</td>
         </tr>
 
     
@@ -1674,7 +2134,7 @@ It should return a truthy value in order to stop the loop.</p></td>
 
             
 
-            <td class="description last"><p>A starting index. Default is 0.</p></td>
+            <td class="description last">A starting index. Default is 0.</td>
         </tr>
 
     
@@ -1714,6 +2174,16 @@ It should return a truthy value in order to stop the loop.</p></td>
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utils_some.js.html">utils/some.js</a>,
+				 <a href="utils_some.js.html#sunlight-1-line-7">line 7</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1739,7 +2209,7 @@ It should return a truthy value in order to stop the loop.</p></td>
 <dl>
     <dt>
         <div class="param-desc">
-        <p>Will throw a TypeError if no callback function was provided.</p>
+        Will throw a TypeError if no callback function was provided.
         </div>
     </dt>
     <dt>
@@ -1794,7 +2264,7 @@ console.log(oddsUntilTen) // -&gt; [1, 3, 5, 7, 9]</pre>
 
     
     <div class="description">
-        <p>Creates an object joining values from the Harray (which will be the keys) and values from the argument array (which will be the values).</p>
+        Creates an object joining values from the Harray (which will be the keys) and values from the argument array (which will be the values).
     </div>
     
 
@@ -1846,7 +2316,7 @@ console.log(oddsUntilTen) // -&gt; [1, 3, 5, 7, 9]</pre>
 
             
 
-            <td class="description last"><p>An array of values.</p></td>
+            <td class="description last">An array of values.</td>
         </tr>
 
     
@@ -1886,6 +2356,16 @@ console.log(oddsUntilTen) // -&gt; [1, 3, 5, 7, 9]</pre>
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utils_zip.js.html">utils/zip.js</a>,
+				 <a href="utils_zip.js.html#sunlight-1-line-7">line 7</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1910,7 +2390,7 @@ console.log(oddsUntilTen) // -&gt; [1, 3, 5, 7, 9]</pre>
     
             
 <div class="param-desc">
-    <p>An object whose keys come from the Harray and values come from the argument passed.</p>
+    An object whose keys come from the Harray and values come from the argument passed.
 </div>
 
 
@@ -1960,8 +2440,8 @@ harr.zip(fruits) // -&gt; {0: &#x27;apple&#x27;, 2: &#x27;pear&#x27;, 4: &#x27;b
 
     
     <div class="description">
-        <p>This is the formula that will be used to generate the next element in the sequence.
-It receives the current element, does whatever you want with it and then returns the next element for the sequence.</p>
+        This is the formula that will be used to generate the next element in the sequence.
+It receives the current element, does whatever you want with it and then returns the next element for the sequence.
     </div>
     
 
@@ -2013,7 +2493,7 @@ It receives the current element, does whatever you want with it and then returns
 
             
 
-            <td class="description last"><p>The element before the one being calculated now.</p></td>
+            <td class="description last">The element before the one being calculated now.</td>
         </tr>
 
     
@@ -2037,7 +2517,7 @@ It receives the current element, does whatever you want with it and then returns
 
             
 
-            <td class="description last"><p>The index for the element being calculated now.</p></td>
+            <td class="description last">The index for the element being calculated now.</td>
         </tr>
 
     
@@ -2077,6 +2557,16 @@ It receives the current element, does whatever you want with it and then returns
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="harray.js.html">harray.js</a>,
+				 <a href="harray.js.html#sunlight-1-line-126">line 126</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -2101,7 +2591,7 @@ It receives the current element, does whatever you want with it and then returns
     
             
 <div class="param-desc">
-    <p>nextElement - The next element for the sequence.</p>
+    nextElement - The next element for the sequence.
 </div>
 
 
@@ -2159,28 +2649,36 @@ harr.get(2) // -&gt; 4</pre>
 </div>
 </div>
 
-<div class="modal fade" id="searchResults">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Search results</h4>
-      </div>
-      <div class="modal-body"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div>
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
 
 <footer>
 
+	<center><a href="https://github.com/lucasfcosta/harray">Fork me on GitHub</a> | Created by <a href="http://lucasfcosta.com">@lucasfcosta</a></center>
+
+
+	<span class="copyright">
+	<br>
+	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a>
 	
-		on March 4th 2016, 2:22:33 pm
+		on Tuesday, November 15th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
@@ -2188,7 +2686,9 @@ harr.get(2) // -&gt; 4</pre>
 
 <script src="scripts/docstrap.lib.js"></script>
 <script src="scripts/toc.js"></script>
-<script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
 
 <script>
 $( function () {
@@ -2198,7 +2698,7 @@ $( function () {
 		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
 	} );
 
-	$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
 		var $this = $( this );
 
 		var example = $this.find( "code" );
@@ -2234,8 +2734,7 @@ $( function () {
 	} );
 	$( "#toc" ).toc( {
 		anchorName  : function ( i, heading, prefix ) {
-			var id = $( heading ).attr( "id" );
-			return id && id.replace(/\~/g, '-inner-').replace(/\./g, '-static-') || ( prefix + i );
+			return $( heading ).attr( "id" ) || ( prefix + i );
 		},
 		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
 		showAndHide : false,
@@ -2257,15 +2756,52 @@ $( function () {
 
 <!--Navigation and Symbol Display-->
 
+<script>
+	$( function () {
+		$( '#main' ).localScroll( {
+			offset : { top : 60 } //offset by the height of your header (give or take a few px, see what works for you)
+		} );
+		$( "dt.name" ).each( function () {
+			var $this = $( this ).find("h4");
+			var icon = $( "<i/>" ).addClass( "icon-plus-sign" ).addClass( "pull-right" ).addClass( "icon-white" );
+			var dt = $(this);
+			var children = dt.next( "dd" );
+
+			dt.prepend( icon ).css( {cursor : "pointer"} );
+			dt.addClass( "member-collapsed" ).addClass( "member" );
+
+
+			children.hide();
+
+			dt.children().on( "click", function () {
+				children = dt.next( "dd" );
+				children.slideToggle( "fast", function () {
+
+					if ( children.is( ":visible" ) ) {
+						icon.addClass( "icon-minus-sign" ).removeClass( "icon-plus-sign" ).removeClass( "icon-white" );
+						dt.addClass( "member-open" ).animate( "member-collapsed" );
+					} else {
+						icon.addClass( "icon-plus-sign" ).removeClass( "icon-minus-sign" ).addClass( "icon-white" );
+						dt.addClass( "member-collapsed" ).removeClass( "member-open" );
+					}
+				} );
+			} );
+
+		} );
+	} );
+</script>
+
 
 <!--Google Analytics-->
 
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		SearcherDisplay.init();
-	});
-</script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
 
 </body>
 </html>

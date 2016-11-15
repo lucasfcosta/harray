@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Harray Index</title>
+	<title>Harray Source: utils/some.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -60,132 +60,56 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	
-	
+		<h1 class="page-title">Source: utils/some.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">'use strict';
 
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-
-
-
-
-    <section class="readme-section">
-        <article><p><a href="https://travis-ci.org/lucasfcosta/harray"><img src="https://travis-ci.org/lucasfcosta/harray.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/lucasfcosta/harray?branch=master"><img src="https://coveralls.io/repos/github/lucasfcosta/harray/badge.svg?branch=master" alt="Coverage Status"></a></p>
-<h1><a href="https://lucasfcosta.github.io/harray">Harray</a></h1><p>An infinite array implementation in JavaScript.</p>
-<p><a href="https://nodei.co/npm/harray/"><img src="https://nodei.co/npm/harray.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="NPM"></a></p>
-<h2>Installing</h2><p>To install Harray you just need to type <code>npm install harray</code> on your console.</p>
-<pre class="prettyprint source"><code>$ npm install harray</code></pre><h2>Getting Started</h2><p>A Harray object represents an infinite array. <strong>Every Harray object has elements and a formula used to generate the items in the sequence.</strong></p>
-<p><strong>If a formula is not provided Harray will use the difference between the last two elements to generate the sequence.</strong></p>
-<p>First of all, let's create a simple Harray with every even number from one until infinity and beyond starting from 0:</p>
-<pre class="prettyprint source lang-js"><code>'use strict';
-const Harray = require('harray');
-
-let even = new Harray(0, 2);
-
-// Getting the third even number (the one on the index 2)
-even.get(2); // -> 4
-even.get(3); // -> 6</code></pre><p>Now let's use a formula to generate a sequence in which every value is two times the previous value:</p>
-<pre class="prettyprint source lang-js"><code>'use strict';
-const Harray = require('harray');
-
-let timesTwo = new Harray(1, function(element) {
-    // `element` represents the value before the one being calculated now
-    return element * 2;
+Object.defineProperty(exports, "__esModule", {
+    value: true
 });
+exports.some = some;
+/**
+ * This method calls the callback function once for every element in the Harray until it returns a truthy value.
+ * @name Harray#some
+ * @method
+ * @param {Function} fn - A callback function which will be called with the element as the only argument.
+ * It should return a truthy value in order to stop the loop.
+ * @param {Number} [index] - A starting index. Default is 0.
+ * @throws {TypeError} Will throw a TypeError if no callback function was provided.
+ * @example
+ * let harr = new Harray(1, 3);
+ * let oddsUntilTen = [];
+ * harr.some(function(element) {
+ *      if (element >= 10) {
+ *          return true;
+ *      } else {
+ *          oddsUntilTen.push(element);
+ *      }
+ * });
+ *
+ * console.log(oddsUntilTen) // -> [1, 3, 5, 7, 9]
+ */
+function some(fn, index) {
+    index = typeof index === 'number' ? index : 0;
 
-timesTwo.get(0); // -> 1
-timesTwo.get(1); // -> 2
-timesTwo.get(2); // -> 4
-timesTwo.get(3); // -> 8</code></pre><p>You can also use the index value on your formula. So now let's create the worlwide famous Fibonacci Sequence Example™:</p>
-<pre class="prettyprint source lang-js"><code>'use strict';
-const Harray = require('harray');
-
-let fibonacci = new Harray(0, 1, function(element, index) {
-    // `element` represents the value before the one being calculated now
-    // `this[index - 2]` represents the value before `element`
-    if (typeof this[index - 2] === 'undefined') {
-        return this[index];
+    if (typeof fn !== 'function') {
+        throw new TypeError();
     }
 
-    return this[index - 2] + element;
-});
-
-fibonacci.get(0); // -> 0
-fibonacci.get(1); // -> 1
-fibonacci.get(2); // -> 1
-fibonacci.get(3); // -> 2
-fibonacci.get(4); // -> 3
-fibonacci.get(5); // -> 5</code></pre><p>Don't want to use a formula to create a sequence? Feel free to create a Harray with an infinite cycle:</p>
-<pre class="prettyprint source lang-js"><code>'use strict';
-const Harray = require('harray');
-
-let abc = Harray.cycle('a', 'b', 'c');
-
-abc.get(0); // -> a
-abc.get(1); // -> b
-abc.get(2); // -> c
-abc.get(3); // -> a
-abc.get(4); // -> b
-abc.get(5); // -> c</code></pre><p>Oh, and before I forget: every value is calculated once, the other times you ask for it Harray gets it from its &quot;cache&quot;.</p>
-<h2>&quot;Advanced&quot; Examples</h2><p>You can also use a <a href="https://nodejs.org/api/stream.html">Stream</a> to pipe elements of the sequence to wherever you want:</p>
-<pre class="prettyprint source lang-js"><code>'use strict';
-const Harray = require('harray');
-
-// Prints an odd number to the console every two seconds
-let harr = new Harray(1, 3);
-let positiveOddsStream = harr.getReadableStream();
-
-positiveOddsStream.on('data', function(chunk) {
-    // Pauses the stream when it receives data
-    positiveOddsStream.pause();
-
-    console.log(chunk.toString());
-
-    // Will resume streaming after two seconds
-    setTimeout(function() {
-        positiveOddsStream.resume();
-    }, 2000);
-});</code></pre><h2>Extending Harray</h2><p>You can easily insert methods into the Harray prototype using <code>Harray.addMethod</code> and they will be immediately available on all your Harray objects.</p>
-<p>Let's for example, create a method that is similar to <code>Harray.get</code> but instead of returning the value for an index, return two times that value:</p>
-<pre class="prettyprint source lang-js"><code>'use strict';
-const Harray = require('harray');
-
-// Create a function
-function getDouble(index) {
-    return this.get(index) * 2;
-}
-
-// Use `Harray.addMethod` to add the function to the `Harray.prototype` object 
-Harray.addMethod('getDouble', getDouble);
-
-let evenNumbers = new Harray(0, 2);
-
-evenNumbers.get(1);         // -> 2
-evenNumbers.getDouble(1);   // -> 4
-evenNumbers.get(2);         // -> 4
-evenNumbers.getDouble(2);   // -> 8</code></pre><h2>Docs</h2><p>Make sure to read our <a href="https://lucasfcosta.github.io/harray">documentation pages</a> and you will discover many other interesting methods available right out of the box. Everything has examples and is explained in detail.</p>
-<h2>Contributing</h2><p>Feel free to send a PR if you have had a nice feature idea or if you found a bug and just solved it, or anything else you think it would be interesting for Harray to have. I'm open to new ideas, don't be afraid of talking to me.</p>
-<p>If you want to suggest something or if you've found a bug please use our <a href="https://github.com/lucasfcosta/harray/issues">Issue Tracker</a> to get in touch with me.</p>
-<h2>License</h2><p>Who cares? This is the internet, live free, buddy.</p></article>
-    </section>
-
-
+    while (!fn(this.get(index))) {
+        index++;
+    }
+}</pre>
+    </article>
+</section>
 
 
 
@@ -196,10 +120,6 @@ evenNumbers.getDouble(2);   // -> 8</code></pre><h2>Docs</h2><p>Make sure to rea
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

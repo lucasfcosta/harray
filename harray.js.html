@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Harray Source: harray.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Harray</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Harray.html">Harray</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: harray.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">'use strict';
+
+var _getIterator2 = require('babel-runtime/core-js/get-iterator');
+
+var _getIterator3 = _interopRequireDefault(_getIterator2);
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _iterator = require('babel-runtime/core-js/symbol/iterator');
+
+var _iterator2 = _interopRequireDefault(_iterator);
+
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _getRange = require('./utils/getRange');
+
+var _zip = require('./utils/zip');
+
+var _some = require('./utils/some');
+
+var _every = require('./utils/every');
+
+var _getReadableStream = require('./utils/getReadableStream');
+
+var _indexOf = require('./utils/indexOf');
+
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @class Harray
+ * @classdesc An infinite array.
+ * @property {Infinity} length - Returns the length of the Harray. (TIP: It's infinite)
+ * @property {Array} cycle - If the harray uses a finite cycle to generate its elements, the cycle will be here, otherwise it will be undefined.&lt;br>
+ * Please see the [Harray.cycle() method]{@link Harray.cycle}.
+ * @param {...Number | Array} element - Every number passed as argument before the formula will be used as an element. You can also pass an array as the first argument instead of multiple elements.
+ * @param {Harray~formula} formula - A formula which will be used to calculate the next element.&lt;br>
+ * If it does not exist the difference between the last two elements will be used as increment value to generate the sequence.&lt;br>
+ * If there's a single element and no formula was provided the sequence will be generated using 1 as increment.
+ * @example
+ * let evensHarray = new Harray(0, 2);
+ * evensHarray.get(2) // -> 4
+ * evensHarray.get(5) // -> 10
+ *
+ * let oddsHarray = new Harray(1, 3);
+ * oddsHarray.get(3) // -> 7
+ * oddsHarray.get(4) // -> 9
+ *
+ * let binaryHarray = new Harray(1, function(element) {
+ *      return element * 2;
+ * };
+ *
+ * // If your environment supports Proxies you can access elements directly using brackets notation
+ * binaryHarray[1] // -> 2
+ * binaryHarray[2] // -> 4
+ * binaryHarray[3] // -> 8
+ *
+ * // Otherwise you can use `.get(x)`
+ * binaryHarray.get(1) // -> 2
+ * binaryHarray.get(2) // -> 4
+ * binaryHarray.get(3) // -> 8
+ *
+ * let nonUniformHarray = new Harray(1, 10, 22, 24);
+ * nonUniformHarray.get(1) // -> 10
+ * nonUniformHarray.get(3) // -> 24
+ * nonUniformHarray.get(4) // -> 26
+ * nonUniformHarray.get(5) // -> 28
+ *
+ * let oneItemHarray = new Harray(10);
+ * oneItemHarray.get(0) // -> 10
+ * oneItemHarray.get(1) // -> 11
+ * oneItemHarray.get(2) // -> 12
+ *
+ * let oneItemHarray = new Harray([20, 30]);
+ * oneItemHarray.get(0) // -> 20
+ * oneItemHarray.get(1) // -> 30
+ * oneItemHarray.get(2) // -> 40
+ */
+function Harray() {
+    var _this = this;
+
+    var args = arguments;
+
+    if (Object.prototype.toString.call(arguments[0]) === '[object Array]') {
+        args = arguments[0];
+        if (typeof arguments[1] === 'function') {
+            args.push(arguments[1]);
+        }
+    }
+
+    this.formula = function (el) {
+        return el + 1;
+    };
+
+    var formulaExists = false;
+    for (var i = 0; i &lt; args.length; i++) {
+        if (typeof args[i] === 'function') {
+            this.formula = args[i];
+            formulaExists = true;
+            break;
+        } else {
+            this[i] = args[i];
+        }
+    }
+
+    if (args.length >= 2 &amp;&amp; !formulaExists) {
+        this.formula = function (el) {
+            return el + args[args.length - 1] - args[args.length - 2];
+        };
+    }
+
+    if (Proxy !== undefined) {
+        return new Proxy(this, {
+            get: function get(target, index) {
+                return _this.get(index);
+            }
+        });
+    }
+}
+
+Harray.prototype.length = Infinity;
+
+/**
+ * This is the formula that will be used to generate the next element in the sequence.
+ * It receives the current element, does whatever you want with it and then returns the next element for the sequence.
+ * @callback Harray~formula
+ * @param {*} element - The element before the one being calculated now.
+ * @param {Number} index - The index for the element being calculated now.
+ * @returns nextElement - The next element for the sequence.
+ * @example
+ * let timesTen = function(element) {
+ *   return element * 10;
+ * }
+ *
+ * let harr = new Harray(2, timesTen);
+ * harr.get(0) // -> 2
+ * harr.get(1) // -> 20
+ * harr.get(2) // -> 200
+ *
+ * let twoTimesIndex = function(element, index) {
+ *   return index * 2;
+ * }
+ *
+ * let anotherHarr = new Harray(0, twoTimesIndex);
+ * harr.get(0) // -> 0
+ * harr.get(1) // -> 2
+ * harr.get(2) // -> 4
+ *
+ */
+
+/**
+ * Gets the value from an index.
+ * If your environment supports proxies you can directly access values using brackets notation, just like: `myHarray[1]`.
+ * @method
+ * @name Harray#get
+ * @param {Number} index - A value's index.
+ * @returns value - The value of an index.
+ */
+Harray.prototype.get = function get(index) {
+    if (this[index] !== undefined) {
+        return this[index];
+    } else {
+        var lastKey = (0, _keys2.default)(this).length - 2;
+        var result = this[lastKey];
+
+        for (var i = lastKey; i &lt; index; i++) {
+            result = this.formula(result, i + 1);
+            this[i + 1] = result;
+        }
+
+        return this[index] = result;
+    }
+};
+
+/**
+ * Sets the value for an index.
+ * @method
+ * @name Harray#set
+ * @param {Number} index - An index.
+ * @param {*} index - The value for that index.
+ * @returns harray - The Harray instance in which the value has been set.
+ */
+Harray.prototype.set = function set(index, value) {
+    this[index] = value;
+    return this;
+};
+
+/**
+ * Defines an iterator for Harray.
+ * @method
+ * @returns GeneratorFunctionPrototype
+ */
+Harray.prototype[_iterator2.default] = _regenerator2.default.mark(function _callee() {
+    var index, reset;
+    return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+            switch (_context.prev = _context.next) {
+                case 0:
+                    index = 0;
+
+                case 1:
+                    if (!true) {
+                        _context.next = 8;
+                        break;
+                    }
+
+                    _context.next = 4;
+                    return this.get(index++);
+
+                case 4:
+                    reset = _context.sent;
+
+
+                    if (reset) {
+                        index = 0;
+                    }
+                    _context.next = 1;
+                    break;
+
+                case 8:
+                case 'end':
+                    return _context.stop();
+            }
+        }
+    }, _callee, this);
+});
+
+/** Gets the Harray iterator.
+ * @name Harray#getIterator
+ * @method
+ * @returns GeneratorFunctionPrototype
+ */
+Harray.prototype.getIterator = _regenerator2.default.mark(function _callee2() {
+    return _regenerator2.default.wrap(function _callee2$(_context2) {
+        while (1) {
+            switch (_context2.prev = _context2.next) {
+                case 0:
+                    return _context2.delegateYield((0, _getIterator3.default)(this), 't0', 1);
+
+                case 1:
+                case 'end':
+                    return _context2.stop();
+            }
+        }
+    }, _callee2, this);
+});
+
+/**
+ * Creates a Harray object which repeats the given cycle.
+ * @method
+ * @name Harray.cycle
+ * @param {...*|Array} cycle - Arguments you want to use to create a cycle or an array of elements.
+ * @returns Harray - A Harray object which repeats the given cycle.
+ * @example
+ * let cycle = Harray.cycle(1, 2, 3);
+ *
+ * cycle.get(2) // -> 3
+ * cycle.get(3) // -> 1
+ * cycle.get(4) // -> 2
+ *
+ * let anotherCycle = Harray.cycle([0, 1]);
+ * anotherCycle.get(1) // -> 1
+ * anotherCycle.get(2) // -> 0
+ */
+Harray.cycle = function cycle(cycleElements) {
+    var h = new Harray();
+
+    h.cycle = arguments.length > 1 ? Array.prototype.slice.call(arguments) : cycleElements;
+
+    h.get = function (index) {
+        if (this[index] !== undefined) {
+            return this[index];
+        } else {
+            var result = this.cycle[index % this.cycle.length];
+            this[index] = result;
+            return result;
+        }
+    };
+
+    return h;
+};
+
+/**
+ * Adds a method to the Harray prototype.
+ * @method
+ * @name Harray.addMethod
+ * @param {String} methodName - The name of the property which will hold the method.
+ * @param {Function} method - The method which will be added to the prototype.
+ * @example
+ * let getDoubleFunction = function(index) {
+ *      return this.get(i) * 2;
+ * }
+ *
+ * Harray.addMethod('getDouble', getDoubleFunction);
+ *
+ * let harr = new Harray(1, 2);
+ * harr.getDouble(0) // -> 2
+ * harr.getDouble(1) // -> 4
+ */
+Harray.addMethod = function addMethod(methodName, method) {
+    Harray.prototype[methodName] = method;
+};
+
+Harray.addMethod('getRange', _getRange.getRange);
+
+Harray.addMethod('zip', _zip.zip);
+
+Harray.addMethod('some', _some.some);
+
+Harray.addMethod('every', _every.every);
+
+Harray.addMethod('getReadableStream', _getReadableStream.getReadableStream);
+
+Harray.addMethod('indexOf', _indexOf.indexOf);
+
+module.exports = Harray;</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+	<center><a href="https://github.com/lucasfcosta/harray">Fork me on GitHub</a> | Created by <a href="http://lucasfcosta.com">@lucasfcosta</a></center>
+
+
+	<span class="copyright">
+	<br>
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a>
+	
+		on Tuesday, November 15th 2016
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+<script>
+	$( function () {
+		$( '#main' ).localScroll( {
+			offset : { top : 60 } //offset by the height of your header (give or take a few px, see what works for you)
+		} );
+		$( "dt.name" ).each( function () {
+			var $this = $( this ).find("h4");
+			var icon = $( "<i/>" ).addClass( "icon-plus-sign" ).addClass( "pull-right" ).addClass( "icon-white" );
+			var dt = $(this);
+			var children = dt.next( "dd" );
+
+			dt.prepend( icon ).css( {cursor : "pointer"} );
+			dt.addClass( "member-collapsed" ).addClass( "member" );
+
+
+			children.hide();
+
+			dt.children().on( "click", function () {
+				children = dt.next( "dd" );
+				children.slideToggle( "fast", function () {
+
+					if ( children.is( ":visible" ) ) {
+						icon.addClass( "icon-minus-sign" ).removeClass( "icon-plus-sign" ).removeClass( "icon-white" );
+						dt.addClass( "member-open" ).animate( "member-collapsed" );
+					} else {
+						icon.addClass( "icon-plus-sign" ).removeClass( "icon-minus-sign" ).addClass( "icon-white" );
+						dt.addClass( "member-collapsed" ).removeClass( "member-open" );
+					}
+				} );
+			} );
+
+		} );
+	} );
+</script>
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
