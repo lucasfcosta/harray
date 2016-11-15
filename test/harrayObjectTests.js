@@ -142,7 +142,7 @@ describe('Harray Object', () => {
             h[2] = 88;
 
             assert.strictEqual(h.get(2), 88);
-        })
+        });
     });
 
     describe('Length Property', () => {
@@ -173,14 +173,14 @@ describe('Harray Object', () => {
         it('Has an iterator function', () => {
             let h = new Harray();
 
-            assert.typeOf(h[Symbol.iterator], 'function')
+            assert.strictEqual(typeof h[Symbol.iterator], 'function');
         });
 
         it('Can be iterated', () => {
             let harr = new Harray(0, 2);
 
             assert.doesNotThrow(() => {
-                for (let h of harr) {
+                for (let h of harr) { // eslint-disable-line no-unused-vars
                     break;
                 }
             }, TypeError);

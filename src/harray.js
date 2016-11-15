@@ -92,7 +92,7 @@ function Harray() {
             get: (target, index) => {
                 return this.get(index);
             }
-        })
+        });
     }
 }
 

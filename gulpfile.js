@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable */
 // Using vars and common functions due to Node 0.12 builds
 var path = require('path');
 var gulp = require('gulp');
