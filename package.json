@@ -1,6 +1,6 @@
 {
   "name": "harray",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "An infinite array implementation.",
   "main": "index.js",
   "scripts": {
