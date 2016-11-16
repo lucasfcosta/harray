@@ -40,6 +40,10 @@ const Harray = require('harray');
 let even = new Harray(0, 2);
 
 // Getting the third even number (the one on the index 2)
+even[2]; // -> 4
+even[3]; // -> 6
+
+// If your environment does not support proxies you can use the `get` method
 even.get(2); // -> 4
 even.get(3); // -> 6
 ```
@@ -55,10 +59,10 @@ let timesTwo = new Harray(1, function(element) {
     return element * 2;
 });
 
-timesTwo.get(0); // -> 1
-timesTwo.get(1); // -> 2
-timesTwo.get(2); // -> 4
-timesTwo.get(3); // -> 8
+timesTwo[0]; // -> 1
+timesTwo[1]; // -> 2
+timesTwo[2]; // -> 4
+timesTwo[3]; // -> 8
 ```
 
 You can also use the index value on your formula. So now let's create the worlwide famous Fibonacci Sequence Example™:
@@ -77,12 +81,12 @@ let fibonacci = new Harray(0, 1, function(element, index) {
     return this[index - 2] + element;
 });
 
-fibonacci.get(0); // -> 0
-fibonacci.get(1); // -> 1
-fibonacci.get(2); // -> 1
-fibonacci.get(3); // -> 2
-fibonacci.get(4); // -> 3
-fibonacci.get(5); // -> 5
+fibonacci[0]; // -> 0
+fibonacci[1]; // -> 1
+fibonacci[2]; // -> 1
+fibonacci[3]; // -> 2
+fibonacci[4]; // -> 3
+fibonacci[5]; // -> 5
 ```
 
 Don't want to use a formula to create a sequence? Feel free to create a Harray with an infinite cycle:
@@ -93,12 +97,12 @@ const Harray = require('harray');
 
 let abc = Harray.cycle('a', 'b', 'c');
 
-abc.get(0); // -> a
-abc.get(1); // -> b
-abc.get(2); // -> c
-abc.get(3); // -> a
-abc.get(4); // -> b
-abc.get(5); // -> c
+abc[0]; // -> a
+abc[1]; // -> b
+abc[2]; // -> c
+abc[3]; // -> a
+abc[4]; // -> b
+abc[5]; // -> c
 ```
 
 Oh, and before I forget: every value is calculated once, the other times you ask for it Harray gets it from its "cache".
