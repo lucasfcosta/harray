@@ -7,7 +7,9 @@ An infinite array implementation in JavaScript.
 [![NPM](https://nodei.co/npm/harray.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/harray/)
 
 
-## Installing
+## Installing & Using
+
+### Node.js
 
 To install Harray you just need to type `npm install harray` on your console.
 
@@ -15,6 +17,13 @@ To install Harray you just need to type `npm install harray` on your console.
 $ npm install harray
 ```
 
+### Browser
+
+To use Harray in your browser you just gotta require the browserified version of the package and then you will have a globally available `Harray` constructor.
+
+```html
+<script src="./node_modules/harray/harray.js"></script>
+```
 
 ## Getting Started
 
