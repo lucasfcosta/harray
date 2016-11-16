@@ -16,6 +16,8 @@ var sequence = require('gulp-sequence');
 var git = require('gulp-git');
 var clean = require('gulp-clean');
 var jsdoc = require('gulp-jsdoc3');
+var tap = require('gulp-tap');
+var browserify = require('browserify');
 
 gulp.task('nsp', function(cb) {
     return nsp({package: __dirname + '/package.json'}, cb);
@@ -119,6 +121,19 @@ gulp.task('tag', ['bump'], function() {
         }));
 });
 
+gulp.task('browserify', ['babel'], function() {
+    return gulp.src('lib/harray.js', {
+        read: false
+    })
+    .pipe(tap(function (file) {
+        file.contents = browserify(file.path, {
+            basedir: './src',
+            standalone: 'Harray'
+        }).bundle();
+    }))
+    .pipe(gulp.dest('./'));
+});
+
 gulp.task('npm', ['tag'], function(cb) {
     require('child_process')
         .spawn('npm', ['publish'], {stdio: 'inherit'})
@@ -131,4 +146,4 @@ gulp.task('publish', function(cb) {
 });
 
 // Does full a build
-gulp.task('build', ['nsp', 'eslint', 'coveralls']);
+gulp.task('build', ['nsp', 'eslint', 'coveralls', 'browserify']);
