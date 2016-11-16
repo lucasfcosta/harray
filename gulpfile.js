@@ -34,7 +34,7 @@ gulp.task('jsdoc', ['clean-docs', 'babel'], function() {
 });
 
 gulp.task('eslint', function() {
-    return gulp.src(['**/*.js', '!lib/**/*.js'])
+    return gulp.src(['**/*.js', '!lib/**/*.js', '!./harray.js'])
         .pipe(excludeGitignore())
         .pipe(eslint())
         .pipe(eslint.formatEach())
